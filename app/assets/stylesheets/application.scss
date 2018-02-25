@@ -22,9 +22,21 @@
   max-width: 600px;
   margin: auto;
 }
+.form-container div {
+  margin-top: 10px;
+}
+.form-container .actions {
+  padding: 5px 0 10px 0;
+}
 .alert-notice {
-    background-color: #dff0d8;
-    border-color: #7dce94;
-    color: #468847;
+    background-color: #d1ecf1;
+    border-color: #d1ecf1;
+    color: #0c5460;
     text-align: left;
  }
+ .alert-alert {
+     background-color: #f8d7da;
+     border-color: #f5c6cb;
+     color: #721c24;
+     text-align: left;
+  }
