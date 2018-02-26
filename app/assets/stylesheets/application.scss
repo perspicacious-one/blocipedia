@@ -10,11 +10,33 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
- //= require jquery3
- //= require popper
- //= require bootstrap
 
  @import "bootstrap";
+
+.bg-light-green {
+  background-color: #7dce94;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: auto;
+}
+.form-container div {
+  margin-top: 10px;
+}
+.form-container .actions {
+  padding: 5px 0 10px 0;
+}
+.alert-notice {
+    background-color: #d1ecf1;
+    border-color: #d1ecf1;
+    color: #0c5460;
+    text-align: left;
+ }
+ .alert-alert {
+     background-color: #f8d7da;
+     border-color: #f5c6cb;
+     color: #721c24;
+     text-align: left;
+  }
