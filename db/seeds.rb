@@ -16,7 +16,7 @@ require 'random_data'
   end
   users = User.all
 
-  50.times do
+  20.times do
     wiki = Wiki.create!(
       user:   users.sample,
       title:  RandomData.random_sentence,

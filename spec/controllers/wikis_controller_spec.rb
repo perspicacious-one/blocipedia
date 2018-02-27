@@ -2,38 +2,42 @@ require 'rails_helper'
 
 RSpec.describe WikisController, type: :controller do
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  context 'not logged in' do
+
+    let(:my_wiki) { create(:wiki)}
+
+    describe "GET #show" do
+      subject { get :show, params: { id: my_wiki.id } }
+
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders show wiki" do
+        expect(subject).to render_template("show")
+      end
+
+    end
+
+    describe "GET new" do
+      it "returns http redirect" do
+        get :new, params: { id: my_wiki.id  }
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
+  context 'when logged in?' do
 
-  describe "GET #delete" do
-    it "returns http success" do
-      get :delete
-      expect(response).to have_http_status(:success)
-    end
-  end
+    describe "#create" do
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      it "assigns the new wiki to @wiki" do
+        expect(create(:wiki, user: build(:user))).to eq Wiki.last
+      end
     end
-  end
 
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+    describe "#delete" do
+
     end
   end
 
