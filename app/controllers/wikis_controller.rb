@@ -11,8 +11,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = current_user.wiki.build(wiki_params)
-    @wiki.user = current_user
+    @wiki = current_user.wikis.build(wiki_params)
 
     if @wiki.save
       redirect_to @wiki
