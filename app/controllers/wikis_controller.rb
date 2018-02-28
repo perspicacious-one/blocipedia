@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+  include Pundit
   before_action :authenticate_user!, except: [:show, :index]
 
   def new
@@ -6,7 +7,7 @@ class WikisController < ApplicationController
   end
 
   def index
-    @wikis = Wiki.all.order(created_at: :desc)
+    @wikis = policy_scope(Wiki)
   end
 
   def create
@@ -24,13 +25,14 @@ class WikisController < ApplicationController
   def show
     begin
       @wiki = Wiki.find(params[:id])
+      authorize @wiki, :show?
     rescue ActiveRecord::RecordNotFound => e
       redirect_to wikis, flash.now[:error] = "Whoops! Could not find that wiki. \n #{e.message}"
     end
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = authorize Wiki.find(params[:id]), :update?
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -47,7 +49,8 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki =  Wiki.find(params[:id])
+    authorize @wiki, :destroy?
     if @wiki.delete
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
