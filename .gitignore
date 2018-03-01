@@ -23,3 +23,6 @@
 .byebug_history
 
 /config/initializers/email_setup.rb
+
+# Ignore application configuration
+/config/application.yml
