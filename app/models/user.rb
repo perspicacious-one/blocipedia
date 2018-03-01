@@ -6,11 +6,11 @@ class User < ApplicationRecord
 
   has_many :wikis
 
-  after_initialize :set_defaults
+  after_initialize :set_role
 
   private
 
-  def set_defaults
+  def set_role
     self.role ||= "standard"
   end
 end

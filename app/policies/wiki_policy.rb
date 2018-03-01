@@ -22,12 +22,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    if !user
-      if !record.private?
+    if  not user
+      if not record.private?
         true
       else
-        raise Pundit::NotAuthorizedError, "You are not allowed to do that."
-        redirect_to root_path
+        false
       end
     else
       record.user == user or user.role == "admin" or not record.private?
@@ -38,7 +37,7 @@ class WikiPolicy < ApplicationPolicy
     if user && (user.role == "admin")
       true
     else
-      raise Pundit::NotAuthorizedError, "You are not allowed to do that."
+      false
     end
   end
 end
