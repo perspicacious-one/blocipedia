@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :wikis
+
+  after_initialize :set_role
+
+  private
+
+  def set_role
+    self.role ||= "standard"
+  end
 end

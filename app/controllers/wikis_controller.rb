@@ -1,16 +1,18 @@
 class WikisController < ApplicationController
+  include Pundit
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :find_wiki, except: [:new, :index, :create]
 
   def new
     @wiki = Wiki.new
   end
 
   def index
-    @wikis = Wiki.all.order(created_at: :desc)
+    @wikis = policy_scope(Wiki)
   end
 
   def create
-    @wiki = current_user.wikis.build
+    @wiki = current_user.wikis.build(wiki_params)
 
     if @wiki.save
       redirect_to @wiki
@@ -22,14 +24,14 @@ class WikisController < ApplicationController
 
   def show
     begin
-      @wiki = Wiki.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to wikis, flash.now[:error] = "Whoops! Could not find that wiki. \n #{e.message}"
+      authorize @wiki, :show?
+    rescue Pundit::NotAuthorizedError => e
+      redirect_to wikis, flash.now[:alert] = "You do not have permission to do that."
     end
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki authorize, :update?
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -42,11 +44,10 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    authorize @wiki, :destroy?
     if @wiki.delete
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
@@ -60,5 +61,13 @@ class WikisController < ApplicationController
 
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def find_wiki
+    begin
+      @wiki =  Wiki.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to wikis, flash.now[:error] = "Whoops! Could not find that wiki. \n #{e.message}"
+    end
   end
 end

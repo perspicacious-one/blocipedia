@@ -16,6 +16,7 @@ group :production do
 end
 
 gem 'devise'
+gem 'pundit'
 
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -47,6 +48,7 @@ group :development, :test do
   gem 'factory_bot_rails', "~> 4.0"
   gem 'shoulda'
   gem 'capybara'
+  gem 'faker'
 end
 
 group :development do
