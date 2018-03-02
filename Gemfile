@@ -16,6 +16,7 @@ group :production do
 end
 
 gem 'devise'
+gem 'pundit'
 
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

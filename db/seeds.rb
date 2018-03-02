@@ -21,6 +21,7 @@ require 'random_data'
       user:   users.sample,
       title:  RandomData.random_sentence,
       body:   RandomData.random_paragraph,
+      private: [true, false].sample
     )
     wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
   end

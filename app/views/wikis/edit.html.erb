@@ -1,6 +1,6 @@
 <div class="form-container">
   <h3>Edit Wiki</h3>
-  <%= form_for [@wiki] do |f| %>
+  <%= form_for @wiki do |f| %>
     <div class="form-group">
       <%= f.label "Title" %>
       <%= f.text_field :title, class: "form-control" %>
