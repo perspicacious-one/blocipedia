@@ -13,9 +13,15 @@
  */
 
  @import "bootstrap";
-
-.bg-light-green {
-  background-color: #7dce94;
+.main-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#customButton a {
+  text-decoration: none;
 }
 
 .form-container {

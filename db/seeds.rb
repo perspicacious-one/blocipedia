@@ -22,6 +22,12 @@ require 'faker'
   end
   users = User.all
 
+  User.create!(
+    name: "Admin",
+    email: "admin@blocipedia.com"
+    password: "password"
+  )
+
   25.times do
     begin
       title = [Faker::Hacker.ingverb.capitalize, Faker::Hacker.unique.adjective.capitalize, Faker::Food.dish].join(' ')

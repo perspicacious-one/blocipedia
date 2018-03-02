@@ -1,0 +1,11 @@
+<form class="form-inline pull-right">
+  <% if user_signed_in? && can_upgrade? %>
+    <button class="btn btn-outline-success mr-sm-2"><%= link_to "Get Premium", new_charge_path, class: "font-weight-bold text-success" %></button>
+    <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "font-weight-bold text-primary"  %></button>
+  <% elsif user_signed_in? %>
+    <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "font-weight-bold text-primary"  %></button>
+  <% else %>
+    <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign In", new_user_session_path, class: "font-weight-bold text-primary"  %></button>
+    <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign Up", new_user_registration_path, class: "font-weight-bold text-primary"  %></button>
+  <% end %>
+</form>

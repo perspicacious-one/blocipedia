@@ -1,2 +1,41 @@
-<h1>Charges#new</h1>
-<p>Find me in app/views/charges/new.html.erb</p>
+<div class="container-fluid w-100 p-5 bg-light">
+<%= form_tag charges_path do %>
+  <div class="form-container ">
+    <h4 class="display-4 mb-4">Upgrade to Premium!</h4>
+    <p class="lead">Benefits Include:</p>
+    <hr>
+      <p class="h5">Private Posts,</p>
+      <p class="h5">And thats about it...</p>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <button id="customButton" class="btn btn-lg btn-block btn-success mt-4">Purchase</button>
+  </div>
+  <script>
+  var handler = StripeCheckout.configure({
+    key: "<%= @stripe_btn_data[:key] %>",
+    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    locale: 'auto',
+    token: function(token) {
+      // You can access the token ID with `token.id`.
+      // Get the token ID to your server-side code for use.
+    }
+  });
+
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options:
+    handler.open({
+      name: 'Upgrade to Premium!',
+      description: "<%= @stripe_btn_data[:description] %>",
+      amount: <%= @stripe_btn_data[:amount] %>,
+      currency: "USD"
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });
+  </script>
+    <!-- <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script> -->
+<% end %>
+</div>
