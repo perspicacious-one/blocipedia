@@ -24,10 +24,17 @@ require 'faker'
 
   User.create!(
     name: "Admin",
-    email: "admin@blocipedia.com"
-    password: "password"
+    email: "admin@blocipedia.com",
+    password: "password",
+    role: "admin"
   )
 
+  User.create!(
+    name: "Nelson",
+    email: "nelson@blocipedia.com",
+    password: "password",
+    role: "premium"
+  )
   25.times do
     begin
       title = [Faker::Hacker.ingverb.capitalize, Faker::Hacker.unique.adjective.capitalize, Faker::Food.dish].join(' ')
