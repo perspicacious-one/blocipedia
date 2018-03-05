@@ -1,14 +1,16 @@
 class Wiki < ApplicationRecord
+  include ActiveModel::Dirty
+
   belongs_to :user
 
-    after_initialize :set_defaults
+  after_initialize :set_defaults
 
-    scope :is_public, -> { where(private: false) }
-    scope :owned_by, -> (user) { where(user: user) }
+  scope :is_public, -> { where(private: false) }
+  scope :owned_by, -> (user) { where(user: user) }
 
-    private
+  private
 
-    def set_defaults
-      self.private ||= false
-    end
+  def set_defaults
+    self.private ||= false
+  end
 end
