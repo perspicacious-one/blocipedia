@@ -6,4 +6,12 @@ module WikisHelper
       body.split(' ').first(15).join(' ').concat("...")
     end
   end
+
+  def author_name(wiki)
+    if wiki != nil && wiki.user != nil
+      wiki.user.name
+    else
+      "Anonymous"
+    end
+  end
 end

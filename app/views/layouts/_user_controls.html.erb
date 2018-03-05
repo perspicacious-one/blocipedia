@@ -1,12 +1,12 @@
-<form class="form-inline pull-right mr-3">
+<div class="form-inline pull-right mr-3">
   <% if user_signed_in? && can_upgrade? %>
-    <%= button_to "Sign Out", destroy_user_session_path, :method => :delete, class: "btn btn-light" %>
-    <%= button_to "Get Premium", new_charge_path, class: "btn btn-light" %>
+    <%= button_to "Get Premium", new_charge_path, :method => :get, class: "btn btn-success mr-2" %>
+    <%= button_to "Sign Out", destroy_user_session_path, :method => :delete, class: "btn btn-outline-light" %>
   <% elsif user_signed_in? %>
-    <%= button_to "Account", edit_user_registration_path, method: :get, class: "btn btn-light" %>
-    <%= button_to "Sign Out", destroy_user_session_path, :method => :delete, class: "btn btn-light" %>
+    <%= button_to "Account", edit_user_registration_path, :method => :get, class: "btn btn-primary mr-2" %>
+    <%= button_to "Sign Out", destroy_user_session_path, :method => :delete, class: "btn btn-outline-light" %>
   <% else %>
-    <%= button_to "Sign In", new_user_session_path, class: "btn btn-light"  %>
-    <%= button_to "Sign Up", new_user_registration_path, class: "btn btn-light"  %>
+    <%= button_to "Sign In", new_user_session_path, :method => :get, class: "btn btn-outline-light"  %>
+    <%= button_to "Sign Up", new_user_registration_path, :method => :get, class: "btn btn-outline-light"  %>
   <% end %>
-</form>
+</div>
