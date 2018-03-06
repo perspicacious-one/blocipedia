@@ -9,7 +9,7 @@
         <div class="card-header">
           <%= link_to wiki.title, wiki, class: "h4 card-title" %>
           <div><small class="font-weight-light">
-            created on <%= wiki.created_at.strftime("%Y-%m-%d") %>, by <strong><%= wiki.user.name %></strong>
+            created on <%= wiki.created_at.strftime("%Y-%m-%d") %>, by <strong><%= author_name(wiki) %></strong>
           </small></div>
         </div>
         <div class="card-body">

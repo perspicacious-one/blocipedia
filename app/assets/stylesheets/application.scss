@@ -14,10 +14,13 @@
 
  @import "bootstrap";
 
-.bg-light-green {
-  background-color: #7dce94;
-}
+#customButton a {
+  text-decoration: none;
 
+}
+.btn-outline-light {
+  margin-right: 10px;
+}
 .form-container {
   max-width: 600px;
   margin: auto;

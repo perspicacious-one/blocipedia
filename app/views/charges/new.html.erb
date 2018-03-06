@@ -1,0 +1,15 @@
+<div class="container-fluid w-100 p-5 bg-light">
+<%= form_tag charges_path do %>
+  <div class="form-container ">
+    <h4 class="display-4 mb-4">Upgrade to Premium!</h4>
+    <p class="lead">Benefits Include:</p>
+    <hr>
+      <p class="h5">Private Posts,</p>
+      <p class="h5">And thats about it...</p>
+      <br>
+      <script class='stripe-button customButton' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+  </div>
+
+
+<% end %>
+</div>
