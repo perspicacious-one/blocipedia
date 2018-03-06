@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="form-container">
   <h3>Edit Wiki</h3>
   <%= form_for [@wiki] do |f| %>
@@ -37,3 +38,23 @@
   <% end %>
 </div>
 >>>>>>> master
+=======
+<div class="form-container">
+  <h3>Edit Wiki</h3>
+  <%= form_for [@wiki] do |f| %>
+    <div class="form-group">
+      <%= f.label "Title" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Title" %>
+      <%= f.text_area :body, size: "60x12", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Private?"%>
+      <%= f.check_box :private, class: "form-check-input, ml-1" %>
+    </div>
+    <%= f.submit "Save", class: "btn btn-success" %>
+  <% end %>
+</div>
+>>>>>>> refs/heads/story-5-seeding-data

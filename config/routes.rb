@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
+=======
+  resources :charges, only: [:new, :create]
+
+>>>>>>> refs/heads/story-5-seeding-data
   resources :wikis
 
   devise_for :users, controllers: {

@@ -14,10 +14,20 @@
 
  @import "bootstrap";
 
+<<<<<<< HEAD
 .bg-light-green {
   background-color: #7dce94;
 }
 
+=======
+#customButton a {
+  text-decoration: none;
+
+}
+.btn-outline-light {
+  margin-right: 10px;
+}
+>>>>>>> refs/heads/story-5-seeding-data
 .form-container {
   max-width: 600px;
   margin: auto;

@@ -3,17 +3,27 @@
   <head>
     <title>Blocipedia</title>
     <%= csrf_meta_tags %>
+<<<<<<< HEAD
 
+=======
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+>>>>>>> refs/heads/story-5-seeding-data
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+=======
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
+>>>>>>> refs/heads/story-5-seeding-data
       <ul class="navbar-nav mr-auto">
         <li><a class="navbar-brand h1" href="#">Blocipedia</a></li>
         <li class="nav-item"><%= link_to "Wikis", wikis_path, class: "nav-link" %></li>
         <li class="nav-item"><a class="nav-link" href="#">Articles</span></a></li>
       </ul>
+<<<<<<< HEAD
       <form class="form-inline pull-right">
         <% if user_signed_in? %>
           <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></button>
@@ -22,6 +32,9 @@
           <button class="btn btn-outline-primary mr-sm-2"><%= link_to "Sign Up", new_user_registration_path %></button>
         <% end %>
       </form>
+=======
+      <%= render "layouts/user_controls" %>
+>>>>>>> refs/heads/story-5-seeding-data
     </nav>
     <div class="container mt-4 p-2">
       <%= render 'layouts/messages' %>
