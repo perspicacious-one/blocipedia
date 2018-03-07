@@ -5,9 +5,10 @@
       <%= f.label "Title" %>
       <%= f.text_field :title, class: "form-control" %>
     </div>
+    <hr>
     <div class="form-group">
-      <%= f.label "Title" %>
-      <%= f.text_area :body, size: "60x12", class: "form-control" %>
+      <%= f.label "Body" %>
+      <%= f.text_area :body, size: "60x12", class: "form-control", id: "edit-wiki-body" %>
     </div>
     <% if current_user.role != "standard" %>
     <div class="form-group">

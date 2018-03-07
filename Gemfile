@@ -19,6 +19,8 @@ gem 'devise'
 gem 'pundit'
 gem 'stripe'
 gem 'figaro'
+gem 'redcarpet'
+
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
