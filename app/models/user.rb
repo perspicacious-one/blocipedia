@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :publications, as: :author
   has_many :collaborators
   has_many :wikis, through: :collaborators
   after_initialize :set_defaults

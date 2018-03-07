@@ -1,7 +1,7 @@
 class Wiki < ApplicationRecord
   include ActiveModel::Dirty
 
-  belongs_to :user
+  belongs_to :author, polymorphic: true
   has_many :collaborators
   has_many :users, through: :collaborators
 
