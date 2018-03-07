@@ -50,6 +50,14 @@ require 'faker'
     end
   end
   wikis = Wiki.all
+  40.times do
+    swiki = wikis.sample
+    colaborator = Collaborator.create!(
+      wiki: swiki,  
+      user: (users - [swiki.user]).sample
+    )
+  end
 
   puts "#{User.count} users created"
   puts "#{Wiki.count} wikis created"
+  puts "#{Collaborator.count} collaborators created"
