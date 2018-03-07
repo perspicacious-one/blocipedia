@@ -2,23 +2,52 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update, :downgrade]
-
+  before_action :configure_account_update_params, only: [:update]
+  after_save :make_wikis_public, only: [:downgrade]
   # GET /resource/sign_up
   # def new
   #   super
   # end
-
+  #
   # POST /resource
   # def create
   #   super
   # end
-
+  #
   # GET /resource/edit
   # def edit
   #   super
   # end
 
+  def downgrade
+    @user = current_user
+    if @user.role == "standard"
+      flash[:alert] = "You are already a standard member."
+    else
+      @user.role = "standard"
+      if @user.save
+        flash[:notice] = "Account membership successfully updated."
+        redirect_to root_path
+      else
+         flash[:alert] = "Something went wrong. Please try again later."
+      end
+    end
+  end
+
+  def upgrade
+    @user = current_user
+    if @user.role == "premium"
+      flash[:alert] = "You are already a premium member."
+    else
+      @user.role = "premium"
+      if @user.save
+        flash[:notice] = "Account membership successfully updated."
+        redirect_to root_path
+      else
+         flash[:alert] = "Something went wrong. Please try again later."
+      end
+    end
+  end
   # PUT /resource
   # def update
   #   super
@@ -38,17 +67,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   protected
+
+  def make_wikis_public
+    Wiki.owned_by(@user).each do |wiki|
+      wiki.update_attribute(:private, false)
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role])
-  # end
+  #If you have extra params to permit, append them to the sanitizer.
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
