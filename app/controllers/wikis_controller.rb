@@ -59,6 +59,15 @@ class WikisController < ApplicationController
     end
   end
 
+  def add_collaborator
+    @user = User.find params[:id]
+    @wiki = Wiki.find params[:wiki_id]
+
+    @wiki.collaborators.create(user_id: @user.id)
+
+    redirect_to @wiki
+  end
+
   private
 
   def wiki_params

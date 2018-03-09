@@ -8,7 +8,7 @@
 require 'random_data'
 require 'faker'
   # Create Users
-  10.times do
+  12.times do
     begin
       name = Faker::Hobbit.character
       User.create!(
@@ -20,14 +20,6 @@ require 'faker'
       Faker::UniqueGenerator.clear
     end
   end
-  users = User.all
-
-  User.create!(
-    name: "Admin",
-    email: "admin@blocipedia.com",
-    password: "password",
-    role: "admin"
-  )
 
   User.create!(
     name: "Nelson",
@@ -35,6 +27,9 @@ require 'faker'
     password: "password",
     role: "premium"
   )
+  users = User.all
+
+  #create Wikis
   25.times do
     begin
       title = [Faker::Hacker.ingverb.capitalize, Faker::Hacker.unique.adjective.capitalize, Faker::Food.dish].join(' ')
@@ -50,13 +45,24 @@ require 'faker'
     end
   end
   wikis = Wiki.all
+
+  #create Collaborators
   40.times do
     swiki = wikis.sample
     colaborator = Collaborator.create!(
-      wiki: swiki,  
+      wiki: swiki,
       user: (users - [swiki.user]).sample
     )
+
   end
+
+  #create Admin User
+  User.create!(
+    name: "Admin",
+    email: "admin@blocipedia.com",
+    password: "password",
+    role: "admin"
+  )
 
   puts "#{User.count} users created"
   puts "#{Wiki.count} wikis created"

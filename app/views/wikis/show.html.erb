@@ -23,6 +23,27 @@
           <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: "card-link" %>
         </div>
       </div>
+      <div class="card pull-right">
+        <div class="card-body w-100">
+          <h5 class="card-title">Collaborators
+            <span class="float-right">
+              <%= link_to 'Add', new_wiki_collaborator_path(@wiki), data: { modal: true }, class: "btn btn-sm" %>
+            </span>
+          </h5>
+          <ul class="list-group list-group-flush">
+            <% @wiki.collaborators.each do |collaborator| %>
+              <li class="list-group-item d-flex align-items-middle">
+                <span class="h6 text-secondary w-75"><%= collaborator.user.name %></span>
+                <% if can_delete?(@wiki) %>
+                  <%= link_to '#', :controller => "Collaborators", :method => "destroy" do %>
+                   <%= render "shared/delete_icon" %>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <% if user_signed_in? %>
       <div class="mt-3 d-flex justify-content-end">
         <%= link_to "Delete Wiki", wiki_path(@wiki), method: :delete, class: "btn btn-danger" %>

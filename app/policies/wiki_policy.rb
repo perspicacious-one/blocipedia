@@ -7,7 +7,7 @@ class WikiPolicy < ApplicationPolicy
         if user.role == "admin"
           scope.all.order(created_at: :desc)
         else
-          scope = Wiki.is_public.or( Wiki.owned_by(user) ).or( Wiki.collaborates_on(user) )
+          scope = Wiki.is_public.or( Wiki.owned_by(user) )
           scope.order(created_at: :desc)
         end
       else

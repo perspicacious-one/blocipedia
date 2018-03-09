@@ -51,6 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
   # PUT /resource
   # def update
   #   super

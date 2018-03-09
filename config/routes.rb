@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
-  resources :wikis
+  resources :wikis do
+    post "user/:id", to: "wikis#add_collaborator"
+    resources :collaborators, only: [:new, :destroy]
+  end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
