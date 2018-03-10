@@ -62,9 +62,12 @@ class WikisController < ApplicationController
   def add_collaborator
     @user = User.find params[:id]
     @wiki = Wiki.find params[:wiki_id]
-
-    @wiki.collaborators.create(user_id: @user.id)
-
+    if @wiki.collaborators.include?(User.find(@user.id))
+      flash[:notice] = "The person is already a collaborator."
+    else
+      authorize @wiki, :add_collaborator?
+      @wiki.collaborators.create(user_id: @user.id)
+    end
     redirect_to @wiki
   end
 

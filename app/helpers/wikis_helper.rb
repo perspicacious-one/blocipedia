@@ -29,8 +29,4 @@ module WikisHelper
 
     markdown.render(text).html_safe
   end
-
-  def can_delete?(wiki)
-    current_user && ((current_user.role == "admin") || (current_user == wiki.user))
-  end
 end

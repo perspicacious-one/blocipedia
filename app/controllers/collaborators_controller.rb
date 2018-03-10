@@ -8,29 +8,11 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id])
   end
 
-  # def create
-  #   #@wiki = Wiki.find(params[:wiki_id])
-  #   #@user = User.find(params[:user_id])
-  #   @collaborator = Collaborator.new collab_params
-  #   if @collaborator.save
-  #     flash[:notice] = "Collaborator successfully added."
-  #   else
-  #     flash[:alert] = "Could not add collaborator."
-  #   end
-  #   redirect_to @wiki
-  # end
-
   def destroy
-    wiki = Wiki.find(params[:wiki_id])
-    @collaborator = Collaborator.find(params[:id])
-    #authorize @collaborator, :destroy?
-    if @collaborator.delete
-    flash[:notice] = "\"#{@collaborator.user.name}\" was removed successfully."
-      refresh
-    else
-      flash.now[:alert] = "There was an error removing this collaborator"
-      refresh
-    end
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaborator = @wiki.collaborators.find(params[:id])
+    @collaborator.delete
+    redirect_to @wiki
   end
 
   private
