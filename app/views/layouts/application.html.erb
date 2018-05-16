@@ -10,7 +10,7 @@
           rel="stylesheet">
 >>>>>>> refs/heads/story-5-seeding-data
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   </head>
   <body>
 <<<<<<< HEAD
@@ -37,6 +37,7 @@
 >>>>>>> refs/heads/story-5-seeding-data
     </nav>
     <div class="container mt-4 p-2">
+      <div id="modal-holder"></div>
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>

@@ -1,3 +1,4 @@
+
 class WikiPolicy < ApplicationPolicy
   class Scope < Scope
     attr_reader :user, :scope
@@ -18,26 +19,45 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user or user.role == "admin" or not record.private?
+    (false if !user)
+    if record.private?
+      (record.collaborators.include?(user) ? true : false)
+      (user.role == "admin" ? true : false)
+    else
+      true
+    end
   end
 
   def show?
-    if  not user
-      if not record.private?
-        true
-      else
-        false
-      end
+    (false if !user)
+    if record.private?
+      (record.collaborators.include?(user) ? true : false)
+      (user.role == "admin" ? true : false)
+
+
     else
-      record.user == user or user.role == "admin" or not record.private?
+      true
     end
   end
 
   def destroy?
-    if user && (user.role == "admin")
+    if has_control_over?(record)
       true
     else
       false
     end
+  end
+
+  def add_collaborator?
+    has_control_over?(record) and not record.collaborators.include?(user)
+  end
+
+  def remove_collaborator?
+    has_control_over?(record)
+  end
+
+  private
+  def has_control_over?(wiki)
+    user && ((user.role == "admin") || (user == wiki.user))
   end
 end

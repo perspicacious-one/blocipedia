@@ -1,0 +1,17 @@
+<div class="form-container">
+  <div class="border-bottom-2 border-dark">
+    <h3>Add Collaborator</h3>
+  </div>
+  <div class="list-group">
+    <% @users.each do |user| %>
+      <% if user != current_user %>
+        <div class: 'list-group-itemflex-column align-items-start'>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= user.name %></h5>
+            <%= button_to "Add", "/wikis/#{@wiki.id}/user/#{user.id}", :action => "wikis#add_collaborator", class: "btn btn-sm, btn-success"%>
+          </div>
+         </div>
+       <% end %>
+    <% end %>
+  </div>
+</div>
