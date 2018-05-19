@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**A Rails application for creating, editing, and collaborating on articles.**
 
-Things you may want to cover:
+### Using
+* Rails 5
+* Devise
+* Bootstrap
+* Stripe
 
-* Ruby version
+#### Todo:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ * Paging on article index
+ * Search function
+ * Tag system with related articles shown
