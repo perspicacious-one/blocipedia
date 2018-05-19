@@ -17,3 +17,4 @@ class User < ApplicationRecord
     self.role ||= "standard"
   end
 end
+

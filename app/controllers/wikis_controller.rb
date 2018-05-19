@@ -1,3 +1,4 @@
+
 class WikisController < ApplicationController
   include Pundit
   before_action :authenticate_user!, except: [:show, :index]
@@ -77,3 +78,4 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private)
   end
 end
+

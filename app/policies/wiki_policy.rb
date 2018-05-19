@@ -33,6 +33,8 @@ class WikiPolicy < ApplicationPolicy
     if record.private?
       (record.collaborators.include?(user) ? true : false)
       (user.role == "admin" ? true : false)
+
+
     else
       true
     end
@@ -42,7 +44,7 @@ class WikiPolicy < ApplicationPolicy
     if has_control_over?(record)
       true
     else
-      raise Pundit::NotAuthorizedError, "You are not allowed to do that."
+      false
     end
   end
 
