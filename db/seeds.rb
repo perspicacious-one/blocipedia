@@ -23,7 +23,7 @@ require 'faker'
 
   User.create!(
     name: "Nelson",
-    email: "nelson@siki-san.com",
+    email: "nelson@wiki_san.com",
     password: "password",
     role: "premium"
   )
@@ -59,7 +59,7 @@ require 'faker'
   #create Admin User
   User.create!(
     name: "Admin",
-    email: "admin@siki-san.com",
+    email: "admin@wiki_san.com",
     password: "password",
     role: "admin"
   )
